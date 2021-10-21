@@ -48,9 +48,7 @@ public class MainController {
     @RequestMapping("/deleteItem")
     public String deleteItem(@RequestParam(value = "id") Integer id) {
 
-            for(Product item : cart) {
-                item.
-            }
+
 
             for(int i = 0; i < cart.size(); i++) {
                 if(cart.get(i).getId() == id) {
