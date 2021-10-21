@@ -29,6 +29,7 @@ public class MainController {
         model.addAttribute("allProducts", products); // Vi skapar en attribut som heter allproducts som pekar mot products
         //som är vår lista med data, med det kan vi använda attributen i thymeleaf
 
+        model.addAttribute("numOfItems", cart.size());
 
         return "home.html"; // här hamnar vi på html filen
     }
@@ -47,8 +48,6 @@ public class MainController {
 
     @RequestMapping("/deleteItem")
     public String deleteItem(@RequestParam(value = "id") Integer id) {
-
-
 
             for(int i = 0; i < cart.size(); i++) {
                 if(cart.get(i).getId() == id) {

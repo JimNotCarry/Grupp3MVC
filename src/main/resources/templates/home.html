@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/styles/styles.css}" href="/styles/styles.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/styles/navbar.css}" href="/styles/navbar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+    <div th:replace="fragments/navbar :: navbar"></div>
     <p th:each="product : ${allProducts}">
         <a th:text="${product.name}"/>
         <a th:text="${product.price}"/>

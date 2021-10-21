@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="navbar" class="navbar">
+    <div class="container">
+        <div class="leftMenu">
+            <ul class="nav-left">
+                <li>HOME</li>
+                <li>PRODUCTS</li>
+            </ul>
+        </div>
+
+        <div class="rightMenu">
+            <ul class="nav-right">
+                <li>
+                    <a class="cartButton" th:href="@{|/cart|}">CART</a>
+                </li>
+                <li th:href="@{|/cart|}" class="cartIcon" th:text="${numOfItems}"></li>
+            </ul>
+        </div>
+    </div>
+</div>
