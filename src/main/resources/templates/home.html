@@ -5,21 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-
-
-
-
     <p th:each="product : ${allProducts}">
-
         <a th:text="${product.name}"/>
         <a th:text="${product.price}"/>
-        <button  >Add to cart </button>
-
-
+        <a th:href="@{|/addtocart?id=${product.id}|}">Add to cart</a>
+<!--        <button>Add to cart </button>-->
         <br/>
     </p>
+
+    <a th:href="@{|/cart|}">Varukorg</a>
 </body>
-
-
-
 </html>
