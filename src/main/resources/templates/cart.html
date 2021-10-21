@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a th:each="item : ${cartItems}">
+        <a th:text="${item.name}"></a>
+        <a th:text="${item.price}"></a>
+        <a th:href="@{|/deleteItem?id=${item.id}|}">Remove product</a>
+        <br/>
+    </a>
+</body>
+</html>
