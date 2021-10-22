@@ -19,16 +19,13 @@ public class MainController {
     CRUDRepository dbcrud; //Skapar ett "abstrakt" objekt, kommer åt funktioner utan att skapa ett faktiskt objekt
 
     List<Product> products;// VI skapar en lista av array med vår pojo product
+    List<Product> tempProducts;
     ArrayList<Product> cart = new ArrayList<>();//skapar en varukorg
 
     @RequestMapping("/home")
     public String homepage(Model model) { // Model kopplat till spring funktioner som är kopplad till thymeleaf
 
-        products = dbcrud.findAll(); // hämtar all data från våran tabell
-
-        model.addAttribute("allProducts", products); // Vi skapar en attribut som heter allproducts som pekar mot products
-        //som är vår lista med data, med det kan vi använda attributen i thymeleaf
-
+        model.addAttribute("numOfItems", cart.size());
 
         return "home.html"; // här hamnar vi på html filen
     }
@@ -36,7 +33,7 @@ public class MainController {
     @RequestMapping("/addtocart")
     public  String addtocart(@RequestParam(value = "id") Integer id) {
         cart.add(dbcrud.findById(id).get());
-        return "redirect:/home";         // Kastar om efter metoden direkt till home
+        return "redirect:/products";         // Kastar om efter metoden direkt till home
     }
 
     @RequestMapping("/cart")
@@ -45,10 +42,22 @@ public class MainController {
         return "cart.html";
     }
 
+    @RequestMapping("/products")
+    public String products(Model model) {
+
+        products = dbcrud.findAll(); // hämtar all data från våran tabell
+
+        model.addAttribute("allProducts",products);
+        //model.addAttribute("allProducts", products); // Vi skapar en attribut som heter allproducts som pekar mot products
+        //som är vår lista med data, med det kan vi använda attributen i thymeleaf
+
+        model.addAttribute("numOfItems", cart.size());
+
+        return "products.html";
+    }
+
     @RequestMapping("/deleteItem")
     public String deleteItem(@RequestParam(value = "id") Integer id) {
-
-
 
             for(int i = 0; i < cart.size(); i++) {
                 if(cart.get(i).getId() == id) {

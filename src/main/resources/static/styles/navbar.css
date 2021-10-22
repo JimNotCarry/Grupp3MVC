@@ -1,0 +1,59 @@
+.navbar {
+    display: flex;
+    width: 100%;
+    height: 20%;
+    background: black;
+    color: white;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 20%;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+}
+
+.rightMenu, .leftMenu {
+    display: flex;
+    width: 50%;
+}
+
+.leftMenu {
+    justify-content: start;
+}
+
+.rightMenu {
+    justify-content: end;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    flex-basis: 300px;
+    align-items: center;
+    color: #fff;
+}
+
+.nav-right {
+    flex-basis: 0;
+    margin-right: 5%;
+}
+
+.cartIcon {
+    font-size: 13px;
+    margin-left: 2%;
+    margin-bottom: 20%;
+}
+
+.cartButton {
+    text-decoration: none;
+}
+
+.cartButton:visited,:active {
+    color: white;
+}
