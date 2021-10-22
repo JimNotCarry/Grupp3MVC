@@ -33,14 +33,14 @@ public class MainController {
     }
 
 
-    @RequestMapping("/addtocart")
-    public  String addtocart(@RequestParam(value = "id")Integer id) {
-
-        System.out.println(id);
-
-        return "redirect:/home";         // Kastar om efter metoden direkt till home
-
-    }
-
+//    @RequestMapping("/addtocart")
+//    public  String addtocart(@RequestParam(value = "id")Integer id) {
+//
+//        System.out.println(id);
+//
+//        return "redirect:/home";         // Kastar om efter metoden direkt till home
+//
+//    }
+//
 
 }
