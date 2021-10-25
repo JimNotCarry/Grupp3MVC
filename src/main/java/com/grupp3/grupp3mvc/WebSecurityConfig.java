@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .roles("ADMIN")
                         .build();
         return new InMemoryUserDetailsManager(user);
+        //hej
     }
 
 }
