@@ -2,8 +2,13 @@
 <body>
     <div th:fragment="popupBox" class="popupMain">
         <div class="popupBox">
-            <a>Heeeejo</a>
-            <a th:href="@{|/goback|}">Go Back</a>
+                <label>Product:</label>
+                <input th:value="${product.name}"/>
+            </br>
+                <label>Price:</label>
+                <input th:value="${product.price}"/>
+            <a>SAVE</a>
+            <a th:href="@{|/goback|}">BACK</a>
         </div>
     </div>
 </body>
