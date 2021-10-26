@@ -50,10 +50,18 @@ ul {
     margin-bottom: 20%;
 }
 
-.cartButton {
+.adminButton {
+    padding-right: 10px;
+}
+
+li a {
     text-decoration: none;
 }
 
-.cartButton:visited,:active {
+li a:visited {
     color: white;
+}
+
+li a:hover {
+    color: #b4bb96;
 }

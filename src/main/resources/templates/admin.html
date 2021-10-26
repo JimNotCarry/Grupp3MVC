@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{/styles/styles.css}" href="/styles/styles.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/styles/navbar.css}" href="/styles/navbar.css" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <h1>Admin page</h1>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div th:if="${trigger}">
+        <div th:replace="fragments/editpopup :: popupBox">></div>
+    </div>
+    <div class="containerAdmin">
+        <div class="productContainerAdmin">
+                <div class="products">
+                            <div th:each="product : ${products}" class="grid">
+                                <div class="leftGrid">
+                                    <a class="nameGrid" th:text="${product.name}"></a>
+                                    <a class="priceGrid" th:text="${product.price}"></a>
+                                </div>
+                                <div class="editAndDeleteGrid">
+                                    <div class="editButton">
+                                        <a th:href="@{|/edit|}">EDIT</a>
+                                    </div>
+                                    <div class="deleteButton">
+                                        <a>Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+        </div>
+    </div>
 </body>
 </html>
