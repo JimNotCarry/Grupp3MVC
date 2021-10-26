@@ -1,0 +1,20 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment = "productform" >
+    <form th:action="@{/saveData}" th:object = "${product}" >
+
+
+    <label>Product:</label>
+    <input  type="text" th:field="*{name}"/>
+    </br>
+    <label>Price:</label>
+    <input  type ="number" th:field="*{price}"/>
+        <button type="submit">Save</button>
+    </form>
+
+
+</div>
+
+
+</body>
+</html>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +23,7 @@ public class MainController {
     Product tempProduct;
     ArrayList<Product> cart = new ArrayList<>();//skapar en varukorg
     boolean popupTrigger = false;
+    boolean productformtrigger = false;
 
     @RequestMapping("/home")
     public String homepage(Model model) { // Model kopplat till spring funktioner som är kopplad till thymeleaf
@@ -76,6 +78,7 @@ public class MainController {
         return "products.html";
     }
 
+
     @RequestMapping("/deleteItem")
     public String deleteItem(@RequestParam(value = "id") Integer id) {
 
@@ -105,11 +108,19 @@ public class MainController {
 
         return "redirect:/admin";
     }
+    @RequestMapping("/newproduct")
+    public String newproduct(Model model) {
+        productformtrigger = true;
+        Product newproduct = new Product();
+        model.addAttribute("product",newproduct);
+        return "redirect:/admin";
 
-    @RequestMapping("saveData")
-    public String saveDataobject(@RequestParam(value = "id") int id) {
+    }
 
-
+    @RequestMapping("/saveData")
+    public String saveDataobject(@ModelAttribute Product product) {
+          //dbcrud.save(product);
+        System.out.println(product);
 
         return "redirect:/admin";
     }

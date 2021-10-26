@@ -8,6 +8,11 @@
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
+    <div th:if="${productformtrigger}">
+    <div th:replace="fragments/productform :: productform">></div>
+        </div>
+    <a th:href="@{|/newproduct|}">create new product</a>
+
     <div th:if="${trigger}">
         <div th:replace="fragments/editpopup :: popupBox">></div>
     </div>
