@@ -2,13 +2,19 @@
 <body>
     <div th:fragment="popupBox" class="popupMain">
         <div class="popupBox">
+            <form th:action="@{/saveData}" th:object="${product}">
+                <label>ID:</label>
+                <input th:field="*{id}" th:value="${product.id}"/>
+                </br>
+
                 <label>Product:</label>
-                <input th:value="${product.name}"/>
+                <input th:field="*{name}" th:value="${product.name}"/>
             </br>
                 <label>Price:</label>
-                <input th:value="${product.price}"/>
-            <a>SAVE</a>
+                <input th:field="*{price}" th:value="${product.price}"/>
+            <button type="submit">SAVE</button>
             <a th:href="@{|/goback|}">BACK</a>
+            </form>
         </div>
     </div>
 </body>
