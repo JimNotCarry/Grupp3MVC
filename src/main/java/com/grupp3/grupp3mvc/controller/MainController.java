@@ -21,6 +21,7 @@ public class MainController {
 
     List<Product> products;// VI skapar en lista av array med vår pojo product
     Product tempProduct;
+    Product newproduct ;
     ArrayList<Product> cart = new ArrayList<>();//skapar en varukorg
     boolean popupTrigger = false;
     boolean productformtrigger = false;
@@ -49,10 +50,14 @@ public class MainController {
         if(tempProduct != null) {
             model.addAttribute("product", tempProduct);
         }
-
+        if(newproduct != null) {
+            model.addAttribute("newproduct", newproduct);
+        }
+        model.addAttribute("productformtrigger",productformtrigger);
         model.addAttribute("trigger",popupTrigger);
         model.addAttribute("products", products);
         model.addAttribute("numOfItems", cart.size());
+
 
         return "admin.html";
     }
@@ -111,15 +116,16 @@ public class MainController {
     @RequestMapping("/newproduct")
     public String newproduct(Model model) {
         productformtrigger = true;
-        Product newproduct = new Product();
-        model.addAttribute("product",newproduct);
+        newproduct = new Product();
+
+
         return "redirect:/admin";
 
     }
 
     @RequestMapping("/saveData")
     public String saveDataobject(@ModelAttribute Product product) {
-          //dbcrud.save(product);
+         dbcrud.save(product);
         System.out.println(product);
 
         return "redirect:/admin";
