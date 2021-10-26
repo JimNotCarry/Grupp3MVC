@@ -21,14 +21,15 @@ public class MainController {
     List<Product> products;// VI skapar en lista av array med vår pojo product
     List<Product> tempProducts;
     ArrayList<Product> cart = new ArrayList<>();//skapar en varukorg
+    boolean popupTrigger = false;
 
-//    @RequestMapping("/home")
-//    public String homepage(Model model) { // Model kopplat till spring funktioner som är kopplad till thymeleaf
-//
-//            model.addAttribute("numOfItems", cart.size());
-//
-//        return "home.html"; // här hamnar vi på html filen
-//    }
+    @RequestMapping("/home")
+    public String homepage(Model model) { // Model kopplat till spring funktioner som är kopplad till thymeleaf
+
+            model.addAttribute("numOfItems", cart.size());
+
+        return "home.html"; // här hamnar vi på html filen
+    }
 
     @RequestMapping("/addtocart")
     public  String addtocart(@RequestParam(value = "id") Integer id) {
@@ -38,10 +39,23 @@ public class MainController {
         return "redirect:/products";         // Kastar om efter metoden direkt till home
     }
 
+    @RequestMapping("/admin")
+    public String adminPage(Model model) {
+
+        products = dbcrud.findAll();
+
+        model.addAttribute("trigger",popupTrigger);
+        model.addAttribute("products", products);
+        model.addAttribute("numOfItems", cart.size());
+
+        return "admin.html";
+    }
+
     @RequestMapping("/cart")
     public String displayCart(Model model) {
 
             model.addAttribute("cartItems",cart);
+            model.addAttribute("numOfItems", cart.size());
 
         return "cart.html";
     }
@@ -68,5 +82,21 @@ public class MainController {
             }
 
             return "redirect:/cart";
+    }
+
+    @RequestMapping("/edit")
+    public String editProductPopopUp() {
+
+        popupTrigger = true;
+
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("/goback")
+    public String goback() {
+
+        popupTrigger = false;
+
+        return "redirect:/admin";
     }
 }
