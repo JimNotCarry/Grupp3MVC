@@ -21,10 +21,10 @@
                                 </div>
                                 <div class="editAndDeleteGrid">
                                     <div class="editButton">
-                                        <a th:href="@{|/edit|}">EDIT</a>
+                                        <a th:href="@{|/edit?id=${product.id}|}">EDIT</a> //Vi skickar in objektet-från loopen
                                     </div>
                                     <div class="deleteButton">
-                                        <a>Delete</a>
+                                        <a th:href="@{|/deleteData?id=${product.id}|}">DELETE</a>
                                     </div>
                                 </div>
                             </div>

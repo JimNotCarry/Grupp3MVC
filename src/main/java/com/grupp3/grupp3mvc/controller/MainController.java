@@ -19,7 +19,7 @@ public class MainController {
     CRUDRepository dbcrud; //Skapar ett "abstrakt" objekt, kommer åt funktioner utan att skapa ett faktiskt objekt
 
     List<Product> products;// VI skapar en lista av array med vår pojo product
-    List<Product> tempProducts;
+    Product tempProduct;
     ArrayList<Product> cart = new ArrayList<>();//skapar en varukorg
     boolean popupTrigger = false;
 
@@ -43,6 +43,10 @@ public class MainController {
     public String adminPage(Model model) {
 
         products = dbcrud.findAll();
+
+        if(tempProduct != null) {
+            model.addAttribute("product", tempProduct);
+        }
 
         model.addAttribute("trigger",popupTrigger);
         model.addAttribute("products", products);
@@ -85,9 +89,27 @@ public class MainController {
     }
 
     @RequestMapping("/edit")
-    public String editProductPopopUp() {
+    public String editProductPopopUp(@RequestParam(value = "id") int id) {
 
+        tempProduct = dbcrud.findById(id).get();
         popupTrigger = true;
+
+        System.out.println(tempProduct);
+
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("/deleteData")
+    public String deleteDataobject(@RequestParam(value = "id") int id) {
+        dbcrud.deleteById(id);
+
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("saveData")
+    public String saveDataobject(@RequestParam(value = "id") int id) {
+
+
 
         return "redirect:/admin";
     }
