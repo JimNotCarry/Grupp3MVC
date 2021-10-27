@@ -7,6 +7,11 @@ a {
     justify-content: center;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+}
+
 .productContainerAdmin {
     margin-top: 10%;
     border: 1px solid black;
@@ -16,15 +21,47 @@ a {
     background-color: white;
 }
 
-.products {
+.productsAdmin {
+    display: flex;
+    flex-direction: column;
     width: 90%;
     height: 100%;
     padding: 5%;
+    gap: 2%;
+}
+
+.productContainer {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 100%;
+    height: 30%;
+    background-color: white;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    gap: 1%;
 }
 
 .grid {
     display: flex;
     width: 100%
+}
+
+.frameGrid {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    flex-basis: 20%;
+    margin: 1%;
+    padding: 1%;
 }
 
 .leftGrid {
@@ -70,6 +107,23 @@ a {
     background-color: darkred;
 }
 
+.addProductButton {
+    width: 20%;
+    text-decoration: none;
+    padding: 1%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.addProductButton:visited {
+    color: black;
+}
+
+.addProductButton:hover {
+    background-color: #6dea75;
+}
+
 .popupMain {
     position: absolute;
     width: 100%;
@@ -86,4 +140,26 @@ a {
     height: 25%;
     border: 1px solid black;
     border-radius: 10px;
+}
+
+.footer {
+    background-color: lightgray;
+    width: 96%;
+    padding: 2%;
+}
+
+.footerMenu a {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    color: #9a9a9a;
+    text-decoration: none;
+}
+
+.footerMenu a:visited {
+    color: #9a9a9a;
+}
+
+.footerMenu a:hover {
+    color: #b4bb96;
 }

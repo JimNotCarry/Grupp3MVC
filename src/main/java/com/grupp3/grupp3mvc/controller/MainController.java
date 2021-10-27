@@ -32,7 +32,7 @@ public class MainController {
     @RequestMapping("/home")
     public String homepage(Model model) { // Model kopplat till spring funktioner som är kopplad till thymeleaf
 
-            model.addAttribute("numOfItems", cart.size());
+        model.addAttribute("numOfItems", cart.size());
 
         return "home.html"; // här hamnar vi på html filen
     }
@@ -40,7 +40,7 @@ public class MainController {
     @RequestMapping("/addtocart")
     public String addtocart(@RequestParam(value = "id") Integer id) {
 
-            cart.add(service.AddToCart(id));
+        cart = service.AddToCart(id, cart);
 
         return "redirect:/products";         // Kastar om efter metoden direkt till home
     }
@@ -48,7 +48,7 @@ public class MainController {
     @RequestMapping("/admin")
     public String adminPage(Model model) {
 
-        products = dbcrud.findAll();
+        products = service.GetAllProducts();
 
         model.addAttribute("product", service.CheckProduct(tempProduct));
         model.addAttribute("newproduct", service.CheckProduct(newproduct));
@@ -73,7 +73,7 @@ public class MainController {
     @RequestMapping("/products")
     public String products(Model model) {
 
-            products = dbcrud.findAll(); // hämtar all data från våran tabell
+            products = service.GetAllProducts(); // hämtar all data från våran tabell
             model.addAttribute("allProducts",products);
             //model.addAttribute("allProducts", products); // Vi skapar en attribut som heter allproducts som pekar mot products
             //som är vår lista med data, med det kan vi använda attributen i thymeleaf
@@ -86,42 +86,36 @@ public class MainController {
     @RequestMapping("/deleteItem")
     public String deleteItem(@RequestParam(value = "id") Integer id) {
 
-            for(int i = 0; i < cart.size(); i++) {
-                if(cart.get(i).getId() == id) {
-                    cart.remove(i);
-                }
-            }
+        cart = service.DeleteCartItem(cart,id);
 
-            return "redirect:/cart";
+        return "redirect:/cart";
     }
 
     @RequestMapping("/edit")
     public String editProductPopopUp(@RequestParam(value = "id") int id) {
 
         tempProduct = service.GetTempProduct(id);
-        popupTrigger = service.SetTrigger(popupTrigger);
+        popupTrigger = service.ExtendedTrigger(popupTrigger, tempProduct);
 
         return "redirect:/admin";
     }
 
     @RequestMapping("/deleteData")
     public String deleteDataobject(@RequestParam(value = "id") int id) {
-        dbcrud.deleteById(id);
+        service.DeleteDataById(id);
 
         return "redirect:/admin";
     }
     @RequestMapping("/newproduct")
     public String newproduct(Model model) {
         productformtrigger = service.SetTrigger(productformtrigger);
-        newproduct = new Product();
-
         return "redirect:/admin";
     }
 
     @RequestMapping("/saveData")
     public String saveDataobject(@ModelAttribute Product product) {
-        dbcrud.save(product);
-        System.out.println(product);
+        service.SaveData(product);
+        productformtrigger = service.SetTrigger(productformtrigger);
 
         return "redirect:/admin";
     }

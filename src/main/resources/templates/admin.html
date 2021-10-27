@@ -8,17 +8,18 @@
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
+
     <div th:if="${productformtrigger}">
-    <div th:replace="fragments/productform :: productform">></div>
-        </div>
-    <a th:href="@{|/newproduct|}">create new product</a>
+        <div th:replace="fragments/productform :: productform">></div>
+    </div>
 
     <div th:if="${trigger}">
         <div th:replace="fragments/editpopup :: popupBox">></div>
     </div>
+
     <div class="containerAdmin">
         <div class="productContainerAdmin">
-                <div class="products">
+                <div class="productsAdmin">
                             <div th:each="product : ${products}" class="grid">
                                 <div class="leftGrid">
                                     <a class="nameGrid" th:text="${product.name}"></a>
@@ -26,13 +27,14 @@
                                 </div>
                                 <div class="editAndDeleteGrid">
                                     <div class="editButton">
-                                        <a th:href="@{|/edit?id=${product.id}|}">EDIT</a> //Vi skickar in objektet-från loopen
+                                        <a th:href="@{|/edit?id=${product.id}|}">EDIT</a>
                                     </div>
                                     <div class="deleteButton">
                                         <a th:href="@{|/deleteData?id=${product.id}|}">DELETE</a>
                                     </div>
                                 </div>
                             </div>
+                    <a class="addProductButton" th:href="@{|/newproduct|}">Add New Product</a>
                 </div>
         </div>
     </div>
