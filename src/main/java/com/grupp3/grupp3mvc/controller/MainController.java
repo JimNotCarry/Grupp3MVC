@@ -16,8 +16,11 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    @Autowired //prova sen att ta bort
+    @Autowired
     CRUDRepository dbcrud; //Skapar ett "abstrakt" objekt, kommer åt funktioner utan att skapa ett faktiskt objekt
+
+    @Autowired
+    MainService service;
 
     List<Product> products;// VI skapar en lista av array med vår pojo product
     Product tempProduct;
@@ -35,9 +38,9 @@ public class MainController {
     }
 
     @RequestMapping("/addtocart")
-    public  String addtocart(@RequestParam(value = "id") Integer id) {
+    public String addtocart(@RequestParam(value = "id") Integer id) {
 
-            cart.add(dbcrud.findById(id).get());
+            cart.add(service.AddToCart(id));
 
         return "redirect:/products";         // Kastar om efter metoden direkt till home
     }
@@ -47,12 +50,8 @@ public class MainController {
 
         products = dbcrud.findAll();
 
-        if(tempProduct != null) {
-            model.addAttribute("product", tempProduct);
-        }
-        if(newproduct != null) {
-            model.addAttribute("newproduct", newproduct);
-        }
+        model.addAttribute("product", service.CheckProduct(tempProduct));
+        model.addAttribute("newproduct", service.CheckProduct(newproduct));
         model.addAttribute("productformtrigger",productformtrigger);
         model.addAttribute("trigger",popupTrigger);
         model.addAttribute("products", products);
@@ -99,10 +98,8 @@ public class MainController {
     @RequestMapping("/edit")
     public String editProductPopopUp(@RequestParam(value = "id") int id) {
 
-        tempProduct = dbcrud.findById(id).get();
-        popupTrigger = true;
-
-        System.out.println(tempProduct);
+        tempProduct = service.GetTempProduct(id);
+        popupTrigger = service.SetTrigger(popupTrigger);
 
         return "redirect:/admin";
     }
@@ -115,17 +112,15 @@ public class MainController {
     }
     @RequestMapping("/newproduct")
     public String newproduct(Model model) {
-        productformtrigger = true;
+        productformtrigger = service.SetTrigger(productformtrigger);
         newproduct = new Product();
 
-
         return "redirect:/admin";
-
     }
 
     @RequestMapping("/saveData")
     public String saveDataobject(@ModelAttribute Product product) {
-         dbcrud.save(product);
+        dbcrud.save(product);
         System.out.println(product);
 
         return "redirect:/admin";
@@ -134,7 +129,7 @@ public class MainController {
     @RequestMapping("/goback")
     public String goback() {
 
-        popupTrigger = false;
+        popupTrigger = service.SetTrigger(popupTrigger);
 
         return "redirect:/admin";
     }
