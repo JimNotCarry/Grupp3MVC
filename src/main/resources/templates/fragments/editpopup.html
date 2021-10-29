@@ -4,7 +4,7 @@
         <div class="popupBox">
             <form th:action="@{/saveData}" th:object="${product}">
                 <label>ID:</label>
-                <input th:field="*{id}" th:value="${product.id}"/>
+                <input th:field="*{id}" th:text="${product.id}"/>
                 </br>
 
                 <label>Product:</label>

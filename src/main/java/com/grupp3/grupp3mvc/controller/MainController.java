@@ -115,7 +115,12 @@ public class MainController {
     @RequestMapping("/saveData")
     public String saveDataobject(@ModelAttribute Product product) {
         service.SaveData(product);
-        productformtrigger = service.SetTrigger(productformtrigger);
+
+        if(product.getId() != 0) {
+            popupTrigger = service.SetTrigger(popupTrigger);
+        } else {
+            productformtrigger = service.SetTrigger(productformtrigger); //Måste ändras till en dynamisk trigger eller skapa en till endpoint
+        }
 
         return "redirect:/admin";
     }
@@ -124,6 +129,14 @@ public class MainController {
     public String goback() {
 
         popupTrigger = service.SetTrigger(popupTrigger);
+
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("/gobackForm")
+    public String gobackEdit() {
+
+        productformtrigger = service.SetTrigger(productformtrigger);
 
         return "redirect:/admin";
     }

@@ -18,8 +18,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    CRUDRepository dbcrud;
-
     @Override
     protected void configure(HttpSecurity Http) throws Exception {
         Http.cors()

@@ -13,7 +13,10 @@
         <div class="productContainer">
             <div class="products">
                 <div th:each="product : ${allProducts}" class="frameGrid">
-                        <a th:text="${product.name}"></a>
+                    <div class="imageBox">
+                        <img alt="productImage" class="image"  th:src="@{/images/fruitguys.jpg}" />
+                    </div>
+                    <a th:text="${product.name}"></a>
                         <a th:text="${product.price}"></a>
                         <a th:href="@{|/addtocart?id=${product.id}|}">Add to cart</a>
                 </div>

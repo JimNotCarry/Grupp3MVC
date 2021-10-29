@@ -129,15 +129,15 @@ a {
     width: 100%;
     height: 100%;
     background-color: rgba(220, 220, 220, 0.5);
-    padding-left: 25%;
-    padding-top: 8%;
 }
 
 .popupBox {
     padding: 5%;
     background-color: white;
-    width: 40%;
-    height: 25%;
+    width: 30%;
+    height: 10%;
+    margin-left: 30%;
+    margin-top: 12%;
     border: 1px solid black;
     border-radius: 10px;
 }
@@ -162,4 +162,42 @@ a {
 
 .footerMenu a:hover {
     color: #b4bb96;
+}
+
+.prodBoxPicture {
+    width: 100%;
+    height: 100%;
+}
+
+.cartMain {
+    width: 100%;
+    height: 100%;
+}
+
+.cartContainer {
+    display: flex;
+    border: 1px solid black;
+    gap: 5%;
+    padding: 2%;
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.cartItem {
+    display: flex;
+    flex-basis: 100%;
+    border: 1px solid black;
+    gap: 5%;
+}
+
+.imageBox {
+    width: 100%;
+    height: 80%;
+    margin-left: 10%;
+}
+
+.image {
+    width: 80%;
+    height: 80%;
 }
